@@ -161,5 +161,37 @@ function carritoDeCompras(){
  this.productos = [];
  this.total=0;
  
+  this.agregarProducto = function (nombre, precio) {
+    this.productos.push({ nombre, precio });
+    this.total += precio;
+    console.log(`El producto ha sido agregado: ${nombre} --> $${precio}`);
+  };
+
+  this.calcularDescuento = function () {
+    console.log(`Total antes del descuento: $${this.total}`);
+    
+    if (this.total > 100) {
+      let descuento = this.total * 0.10;
+      let totalConDescuento = this.total - descuento;
+      console.log(`Descuento: 10% -$${descuento}`);
+      console.log(`Total con descuento: $${totalConDescuento}`);
+    } else if (this.total > 50) {
+      let descuento = this.total * 0.05;
+      let totalConDescuento = this.total - descuento;
+      console.log(`Descuento: 5% -$${descuento}`);
+      console.log(`Total con descuento: $${totalConDescuento}`);
+    } else {
+      console.log("No se aplica descuento");
+      console.log(`Total a pagar: $${this.total.toFixed(2)}`);
+    }
+  };
 
 }
+
+let carritoDecompras1 = new carritoDeCompras();
+
+carritoDecompras1.agregarProducto("Leche", 3000);
+carritoDecompras1.agregarProducto("Huevos", 4000);
+carritoDecompras1.agregarProducto("Carne", 50000);
+
+carritoDecompras1.calcularDescuento();
